@@ -1,8 +1,8 @@
-# Homelab Setup
+# Home Lab Setup
 
 ## Objective
 
-The Homelab Setup project is aimed to establish a controlled environment for simulating and detecting cyber attacks. I set up a home lab using two virtual machines using VMWare as the hypervisor. My host machine is a MacBook Pro M2 Max. I set up these two VMs for the purpose of conducting tests on cybersecurity tools. VMs also allow the ability conduct these tests in a controlled environment without causing harm to the host machine.
+The Home Lab Setup project is aimed to establish a controlled environment for simulating and detecting cyber attacks. I set up a home lab using two virtual machines using VMWare as the hypervisor. My host machine is a MacBook Pro M2 Max. I set up these two VMs for the purpose of conducting tests on cybersecurity tools. VMs also allow the ability conduct these tests in a controlled environment without causing harm to the host machine.
 
 The primary focus was to ingest and analyze logs within a Security Information and Event Management (SIEM) system, generating test telemetry to mimic real-world attack scenarios. This hands-on experience was designed to deepen understanding of network security, attack patterns, and defensive strategies. 
 
