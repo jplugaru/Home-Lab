@@ -1,4 +1,4 @@
-# Home Lab Setup & SIEM Setup
+# Home Lab Setup & SIEM Implementation
 
 ## Objective
 
