@@ -20,7 +20,7 @@ The primary focus of this lab was to set up a test environment and to ingest and
 ### Tools Used
 
 - Security Information and Event Management (SIEM) system for log ingestion and analysis
-- Network analysis tools (such as Wireshark) for capturing and examining network traffic
+- Penetration testing tools (such as Metasploit) to conduct security vulnerability tests
 - Telemetry generation tools to create realistic network traffic and attack scenarios
 
 ## Steps
