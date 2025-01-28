@@ -1,27 +1,27 @@
-# Home Lab Setup
+# Home Lab Setup & SIEM Setup
 
 ## Objective
 
-The Home Lab Setup project is aimed to establish a controlled environment for simulating and detecting cyber attacks. I set up a home lab using two virtual machines using VMWare as the hypervisor. My host machine is a MacBook Pro M2 Max. I set up these two VMs for the purpose of conducting tests on cybersecurity tools. VMs also allow the ability conduct these tests in a controlled environment without causing harm to the host machine.
+The Home Lab Setup project is aimed to establish a controlled environment for simulating and detecting cyber attacks and test various cybersecurity tools. I set up a home lab using two virtual machines using VMWare as the hypervisor. My host machine is a MacBook Pro M2 Max. VMs also allow the ability conduct these tests in a controlled environment without causing harm to the host machine.
 
-The primary focus was to ingest and analyze logs within a Security Information and Event Management (SIEM) system, generating test telemetry to mimic real-world attack scenarios. This hands-on experience was designed to deepen understanding of network security, attack patterns, and defensive strategies. 
+The primary focus of this lab was to set up a test environment and to ingest and analyze logs within a Security Information and Event Management (SIEM) system, generating test telemetry to mimic real-world attack scenarios. This hands-on experience was designed to deepen my understanding of network security, attack patterns, and defensive strategies. 
 
 ### Skills Learned
 
-- Advanced understanding of SIEM concepts and practical application.
-- Proficiency in analyzing and interpreting network logs.
-- Ability to generate and recognize attack signatures and patterns.
-- Enhanced knowledge of network protocols and security vulnerabilities.
-- Development of critical thinking and problem-solving skills in cybersecurity.
+- Advanced understanding of SIEM concepts and practical application
+- Proficiency in analyzing and interpreting network logs
+- Ability to generate and recognize attack signatures and patterns
+- Enhanced knowledge of network protocols and security vulnerabilities
+- Development of critical thinking and problem-solving skills in cybersecurity
 - Advanced understanding of setting up virtual machine hypervisor
 - Installation of Microsoft Windows 11 client and Kali Linux client
 - Network configuration to enable the virtual machines to communicate
 
 ### Tools Used
 
-- Security Information and Event Management (SIEM) system for log ingestion and analysis.
-- Network analysis tools (such as Wireshark) for capturing and examining network traffic.
-- Telemetry generation tools to create realistic network traffic and attack scenarios.
+- Security Information and Event Management (SIEM) system for log ingestion and analysis
+- Network analysis tools (such as Wireshark) for capturing and examining network traffic
+- Telemetry generation tools to create realistic network traffic and attack scenarios
 
 ## Steps
 <img width="768" alt="image" src="https://github.com/user-attachments/assets/5d058a4f-3784-4298-9337-c96dcbb0e91b" />
@@ -111,5 +111,5 @@ Back in the Kali Linux VM, I type in shell to establish a shell on the Windows V
 <img width="2560" alt="3 16" src="https://github.com/user-attachments/assets/29dc8bd1-f3cb-4109-85c8-b9fe5d5e9738" />
 <img width="2560" alt="3 17" src="https://github.com/user-attachments/assets/b764e738-1ab4-4b13-ad02-6318f476d088" />
 
-Next, I go back to the Windows VM to see what kind of telemetry has been generated. I go to Splunk.com and log into my account. In the search bar, I type index=endpoint and populate the results.
+Lastly, I go back to the Windows VM to see what kind of telemetry has been generated. I go to Splunk.com and log into my account. In the search bar, I type index=endpoint and populate the results. The results then show me the data that was captured from the file transfer that is analyed and a decision is made on the next steps to take.
 
